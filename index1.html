@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TravelBae - Explore the World</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 20px;
+      color: white;
+      position: relative;
+    }
+    header h1 {
+      font-size: 2.5rem;
+    }
+    header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    /* Auth buttons */
+    .auth-buttons {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .auth-buttons button {
+      margin: 0 5px;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .auth-buttons .signup {
+      background: #ff4081;
+      color: white;
+    }
+    .auth-buttons .signup:hover {
+      background: #e91e63;
+    }
+    .auth-buttons .signin {
+      background: white;
+      color: #0072ff;
+    }
+    .auth-buttons .signin:hover {
+      background: #ddd;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-around;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      padding: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: yellow;
+    }
+
+    section {
+      padding: 25px;
+    }
+    section h2 {
+      margin-bottom: 15px;
+      color: white;
+      font-size: 1.6rem;
+    }
+
+    .card {
+      background: white;
+      padding: 18px;
+      margin: 12px 0;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(6px);
+      color: white;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* Floating button */
+    .fab {
+      position: fixed;
+      bottom: 70px;
+      right: 20px;
+      background: #ff4081;
+      color: white;
+      padding: 15px 18px;
+      border-radius: 50%;
+      font-size: 22px;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .fab:hover {
+      background: #e91e63;
+      transform: rotate(20deg);
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 350px;
+      text-align: center;
+      position: relative;
+    }
+    .modal-content h3 {
+      margin-bottom: 15px;
+    }
+    .modal-content input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .modal-content button {
+      background: #0072ff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      width: 100%;
+    }
+    .close {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌍 TravelBae</h1>
+    <p>Find buddies • Explore • Discover local gems</p>
+    <div class="auth-buttons">
+      <button class="signin" onclick="openModal('signin')">Sign In</button>
+      <button class="signup" onclick="openModal('signup')">Sign Up</button>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#buddies">Buddies</a>
+    <a href="#stay">Stay</a>
+    <a href="#attractions">Attractions</a>
+    <a href="#local">Local</a>
+  </nav>
+
+  <section id="buddies">
+    <h2>👫 Travel Buddies</h2>
+    <div class="card">Rahul, 22 – Metaibruz (Sept)</div>
+    <div class="card">Priya, 25 - Salt Lake </div>
+    <div class="card">Imran, 21 – Ballygunge</div>
+  </section>
+
+  <section id="stay">
+    <h2>🏨 Stay Options</h2>
+    <div class="card">ITC Royal Bengal</div>
+    <div class="card">Backpackers Hostel – ₹500/night</div>
+    <div class="card">Luxury Resort – ₹7000/night</div>
+  </section>
+
+  <section id="attractions">
+    <h2>📍 Attractions</h2>
+    <div class="card">Victoria Memorial</div>
+    <div class="card">Eco Park</div>
+    <div class="card">Indian Museum</div>
+  </section>
+
+  <section id="local">
+    <h2>🛍️ Local Businesses</h2>
+    <div class="card">Chaggani Club Kachori</div>
+    <div class="card">Arsalan Biryani</div>
+    <div class="card">Esplanade</div>
+  </section>
+
+  <footer>
+    © 2025 TravelBae | Built by Algorithm Avengers
+  </footer>
+
+  <div class="fab" onclick="alert('Feature Coming Soon! ✈️')">+</div>
+
+  <!-- Sign In Modal -->
+  <div class="modal" id="signinModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('signin')">&times;</span>
+      <h3>Sign In</h3>
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button>Login</button>
+    </div>
+  </div>
+
+  <!-- Sign Up Modal -->
+  <div class="modal" id="signupModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('signup')">&times;</span>
+      <h3>Sign Up</h3>
+      <input type="text" placeholder="Full Name">
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button>Create Account</button>
+    </div>
+  </div>
+
+  <script>
+    function openModal(type) {
+      if (type === 'signin') {
+        document.getElementById('signinModal').style.display = 'flex';
+      } else {
+        document.getElementById('signupModal').style.display = 'flex';
+      }
+    }
+    function closeModal(type) {
+      if (type === 'signin') {
+        document.getElementById('signinModal').style.display = 'none';
+      } else {
+        document.getElementById('signupModal').style.display = 'none';
+      }
+    }
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
